@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class player {
+public class Player {
     static List<cards> p_hand = new ArrayList<>();
 
     public static void atCard(cards card) {
