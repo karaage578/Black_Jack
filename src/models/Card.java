@@ -51,6 +51,13 @@ public class Card {
         } else {
             System.out.println(c.mark + " " + c.num);
         }
+    }
+
+    public static int Point(Card c) {
+        if (c.num >= 11) {
+            c.num = 10;
+        }
+        return c.num;
 
     }
 
