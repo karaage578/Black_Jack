@@ -1,41 +1,33 @@
 package models;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Deck {
 
-    List<Cards> cardArray = new ArrayList<cards>();
+    List<Card> cardArray = new ArrayList<>();
+    int cardCount = 0;
 
-    public deck(){
-        //作り出される
+    public Deck() {
+        //デッキインスタンス作成時にカードを作成
+        for (int i = 1; i <= 13; i++) {
+            cardArray.add(new Card(i, "♠"));
+            cardArray.add(new Card(i, "♥"));
+            cardArray.add(new Card(i, "☘"));
+            cardArray.add(new Card(i, "♦"));
+        }
 
     }
 
-    static int turn_count = 0;
-
-    public shuffleDeck(cards deck) {
-        int n = deck.length;
-        Random rnd = new Random();
-
-        for (int i = 0; i < deck.length; i++) {
-            int randomValue = i + rnd.nextInt(n - i);
-            int randomElement = deck[randomValue];
-            deck[randomValue] = deck[i];
-            deck[i] = randomElement;
-        }
+    //シャッフル
+    public void shuffleDeck() {
+        Collections.shuffle(cardArray);
     }
 
-    static void cardDraw() {
-        if (turn_count < deck.length) {
-            cards card = new cards(deck[turn_count]);
-            cards card2 = new cards(deck[turn_count + 1]);
-
-            player.atCard(card);
-            player.atCard(card2);
-            turn_count = turn_count + 2;
-        } else {
-            System.out.println("デッキ切れです。");
-        }
-
+    //ドロー
+    public Card drawCard() {
+        cardCount++;
+        return cardArray.get(cardCount - 1);
     }
 }

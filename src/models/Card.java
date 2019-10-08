@@ -1,7 +1,7 @@
 package models;
 
 public class Card {
-    private int num;
+    private Integer num;
     private String mark;
     private Boolean visible;
 
@@ -29,15 +29,29 @@ public class Card {
         this.visible = visible;
     }
 
-    public cards() {
+    public Card() {
 
     }
 
-    public cards(int num, String mark) {
-    setVisible(false);
-    this.num = num;
-    this.mark = mark;
+    public Card(int num, String mark) {
+        setVisible(false);
+        setNum(num);
+        setMark(mark);
     }
 
+    public static void showCard(Card c) {
+        if (c.num == 1) {
+            System.out.println(c.mark + " A");
+        } else if (c.num == 11) {
+            System.out.println(c.mark + " J");
+        } else if (c.num == 12) {
+            System.out.println(c.mark + " Q");
+        } else if (c.num == 13) {
+            System.out.println(c.mark + " K");
+        } else {
+            System.out.println(c.mark + " " + c.num);
+        }
+
+    }
 
 }
