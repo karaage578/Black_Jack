@@ -21,8 +21,16 @@ public class deck {
     }
 
     static void cardDraw() {
-        System.out.println(deck[turn_count]);
-        System.out.println(deck[turn_count + 1]);
-        turn_count = turn_count + 2;
+        if (turn_count < deck.length) {
+            cards card = new cards(deck[turn_count]);
+            cards card2 = new cards(deck[turn_count + 1]);
+
+            player.atCard(card);
+            player.atCard(card2);
+            turn_count = turn_count + 2;
+        } else {
+            System.out.println("デッキ切れです。");
+        }
+
     }
 }

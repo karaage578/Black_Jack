@@ -29,11 +29,11 @@ public class cards {
         this.visible = visible;
     }
 
-    public void cards() {
+    public cards() {
 
     }
 
-    public void cards(int deck) {
+    public cards(int deck) {
 
         setVisible(true);
 
