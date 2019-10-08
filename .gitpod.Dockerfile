@@ -1,14 +1,16 @@
 FROM gitpod/workspace-full
 
-RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh \
-             && sdk install java 12.0.1.j9-adpt \
-             && sdk ..."
+### Java & Maven ###
+RUN add-apt-repository -yu ppa:webupd8team/java \
+    && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \
+    && apt-get install -yq \
+        gradle \
+        oracle-java8-installer \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/*
 
-# Install custom tools, runtime, etc. using apt-get
-# For example, the command below would install "bastet" - a command line tetris clone:
-#
-# RUN apt-get update \
-#    && apt-get install -y bastet \
-#    && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
-#
-# More information: https://www.gitpod.io/docs/42_config_docker/
+ARG MAVEN_VERSION=3.5.4
+ENV MAVEN_HOME=/usr/share/maven
+ENV PATH=$MAVEN_HOME/bin:$PATH
+RUN mkdir -p $MAVEN_HOME \
+    && curl -fsSL https://apache.osuosl.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz \
+        | tar -xzvC $MAVEN_HOME --strip-components=1
