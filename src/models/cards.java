@@ -3,6 +3,7 @@ package models;
 public class cards {
     private int num;
     private String mark;
+    private Boolean visible;
 
     public int getNum() {
         return num;
@@ -20,7 +21,22 @@ public class cards {
         this.mark = mark;
     }
 
-    public void cardDraw(int deck) {
+    public Boolean getVisible() {
+        return visible;
+    }
+
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
+    }
+
+    public void cards() {
+
+    }
+
+    public void cards(int deck) {
+
+        setVisible(true);
+
         switch (deck) {
         case 1:
             setNum(1);
