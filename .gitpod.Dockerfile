@@ -7,4 +7,3 @@ RUN apt-get update && apt-get install -y \
  && cd simple \
  && mvn package
 CMD ["java","-jar","simple/target/simple-1.0-SNAPSHOT.jar"]
-        | tar -xzvC $MAVEN_HOME --strip-components=1
