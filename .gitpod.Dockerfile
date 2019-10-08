@@ -1,9 +1,5 @@
 FROM gitpod/workspace-full
-
-COPY . .
-RUN apt-get update && apt-get install -y \
-    maven \
-    openjdk-8-jre \
- && cd simple \
- && mvn package
-CMD ["java","-jar","simple/target/simple-1.0-SNAPSHOT.jar"]
+ADD openjdk-11.0.1_linux-x64_bin.tar.gz /opt/jdk/
+ADD HelloWorld.class HelloWorld.class
+ENV PATH /opt/jdk/jdk-11.0.1/bin:$PATH
+CMD [ "java", "-showversion", "HelloWorld" ]]
