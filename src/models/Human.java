@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public class Human {
     List<Card> hand = new ArrayList<>();
 
     Boolean isReady = false;

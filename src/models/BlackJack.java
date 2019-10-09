@@ -10,8 +10,8 @@ public class BlackJack {
         Deck deck = new Deck();
         deck.shuffleDeck();
         //カードをプレイヤーディーラーに配る
-        Player p = new Player();
-        Dealer d = new Dealer();
+        Human p = new Human();
+        Human d = new Human();
 
         TwoDraw(deck, p, d);
 
@@ -35,7 +35,7 @@ public class BlackJack {
     }
 
     //ゲームスタート時のカード配布メソッド
-    private static void TwoDraw(Deck deck, Player p, Dealer d) {
+    private static void TwoDraw(Deck deck, Human p, Human d) {
         p.setHand(deck.drawCard());
         p.setHand(deck.drawCard());
         d.setHand(deck.drawCard());
@@ -43,11 +43,11 @@ public class BlackJack {
 
     }
 
-    private static void PlayerTurn(Deck deck, Player p, Dealer d) {
+    private static void PlayerTurn(Deck deck, Human p, Human d) {
         Scanner scanner = new Scanner(System.in);
 
         if (p.isReady == false) {
-            showPlayerCards(p, d);
+            showPlayerCards(p);
             System.out.print("ヒットしますか？(yes or no)：");
             String choice = scanner.next();
             //yesならカードを1枚引き、それ以外ならステイ状態にする
@@ -66,7 +66,7 @@ public class BlackJack {
         }
     }
 
-    private static void showPlayerCards(Player p, Dealer d) {
+    private static void showPlayerCards(Human p) {
         //プレイヤーのカードを表示する
         System.out.println("【プレイヤー (" + p.sumHand(p.hand) + ")】" + LINE_SEPARATOR + "-------------" + LINE_SEPARATOR);
         for (int i = 0; i < p.hand.size(); i++) {
@@ -75,7 +75,7 @@ public class BlackJack {
         System.out.println(LINE_SEPARATOR + "-------------");
     }
 
-    private static void showEachCards(Player p, Dealer d) {
+    private static void showEachCards(Human p, Human d) {
         //プレイヤーのカードを表示する
         System.out.println("【プレイヤー (" + p.sumHand(p.hand) + ")】" + LINE_SEPARATOR + "-------------" + LINE_SEPARATOR);
         for (int i = 0; i < p.hand.size(); i++) {
