@@ -40,6 +40,7 @@ public class Card {
     }
 
     public static void showCard(Card c) {
+
         if (c.num == 1) {
             System.out.println(c.mark + " A");
         } else if (c.num == 11) {
