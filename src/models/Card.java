@@ -49,6 +49,9 @@ public class Card {
         setNum(num);
         setPoint(point);
         setMark(mark);
+        if (this.num == 1) {
+            ;
+        }
     }
 
     public static void showCard(Card c) {
@@ -68,17 +71,16 @@ public class Card {
 
     public static int Point(Card c, List<Card> hand) {
 
-        //10,J,Q,Kが手札に含まれており、かつ手札が2枚の場合はAを11と数える
-        int[] searchTargets = { 10, 11, 12, 13 };
-        for (int s : searchTargets) {
-            if ((hand.get(0).num == s || hand.get(1).num == s) && c.num == 1 && hand.size() == 2) {
-                c.point = 11;
-            }
+        //Aは基本11と数える
+        if (c.num == 1) {
+            c.point = 11;
         }
+
         //J,Q,Kを10と数える
         if (c.num >= 11) {
             c.point = 10;
         }
+
         return c.point;
 
     }
