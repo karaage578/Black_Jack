@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Human {
     List<Card> hand = new ArrayList<>();
-    Boolean oneFlag = false;
     Boolean isReady = false;
 
     //手札に加える

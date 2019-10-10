@@ -11,13 +11,7 @@ public class Deck {
 
     public Deck() {
         //デッキインスタンス作成時にカードを作成
-        for (int i = 1; i <= 13; i++) {
-            cardArray.add(new Card(i, i, "♠"));
-            cardArray.add(new Card(i, i, "♥"));
-            cardArray.add(new Card(i, i, "☘"));
-            cardArray.add(new Card(i, i, "♦"));
-        }
-
+        createDeck();
     }
 
     //シャッフル
@@ -29,5 +23,15 @@ public class Deck {
     public Card drawCard() {
         cardCount++;
         return cardArray.get(cardCount - 1);
+    }
+
+    //デッキ作成
+    public void createDeck() {
+        for (int i = 1; i <= 13; i++) {
+            cardArray.add(new Card(i, i, "♠"));
+            cardArray.add(new Card(i, i, "♥"));
+            cardArray.add(new Card(i, i, "☘"));
+            cardArray.add(new Card(i, i, "♦"));
+        }
     }
 }
