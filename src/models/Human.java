@@ -17,7 +17,7 @@ public class Human {
     public int sumHand(List<Card> hand) {
         int sum = 0;
         for (int i = 0; i < hand.size(); i++) {
-            sum = sum + Card.Point(hand.get(i));
+            sum = sum + Card.Point(hand.get(i), hand);
         }
         return sum;
     }

@@ -9,6 +9,7 @@ public class BlackJack {
         //山札を作成しシャッフル
         Deck deck = new Deck();
         deck.shuffleDeck();
+
         //カードをプレイヤーディーラーに配る
         Human p = new Human();
         Human d = new Human();

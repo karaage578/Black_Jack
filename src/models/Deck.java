@@ -12,10 +12,10 @@ public class Deck {
     public Deck() {
         //デッキインスタンス作成時にカードを作成
         for (int i = 1; i <= 13; i++) {
-            cardArray.add(new Card(i, "♠"));
-            cardArray.add(new Card(i, "♥"));
-            cardArray.add(new Card(i, "☘"));
-            cardArray.add(new Card(i, "♦"));
+            cardArray.add(new Card(i, i, "♠"));
+            cardArray.add(new Card(i, i, "♥"));
+            cardArray.add(new Card(i, i, "☘"));
+            cardArray.add(new Card(i, i, "♦"));
         }
 
     }
