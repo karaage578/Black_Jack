@@ -9,7 +9,6 @@ public class Game {
 
     //ゲーム処理
     static Boolean startGame(Deck deck, Human p, Human d, Boolean continueGame) {
-        Boolean choiceJudge = false;
 
         //山札をシャッフル
         deck.shuffleDeck();
@@ -23,7 +22,7 @@ public class Game {
         //プレイヤー、ディーラーともにステイであれば勝負
         while (!p.isReady || !d.isReady) {
             //３．４．プレイヤー、ディーラー（ヒットorステイ）
-            PlayerTurn(deck, p, d, choiceJudge);
+            PlayerTurn(deck, p, d);
         }
 
         //★呼び出しが多いメソッドを変数化しておく
@@ -35,18 +34,18 @@ public class Game {
 
         //ゲームを続けるか選択
 
-        while (!choiceJudge) {
+        while (true) {
             System.out.print(LS + "NextGame？(1:yes, 2:no)：");
             String choice = scanner.next();
             if (!choice.equals("1") && !choice.equals("2")) {
                 System.out.println(LS + "1 か 2 を入力してください");
             } else if (choice.equals("2")) {
                 continueGame = false;
-                choiceJudge = true;
+                break;
             } else {
                 //手札を戻しデッキを再度シャッフルする
                 reset(deck, p, d);
-                choiceJudge = true;
+                break;
             }
 
         }
@@ -94,10 +93,10 @@ public class Game {
     }
 
     //プレイヤーの選択（ヒットorステイ）
-    private static void PlayerTurn(Deck deck, Human p, Human d, Boolean choiceJudge) {
+    private static void PlayerTurn(Deck deck, Human p, Human d) {
         if (p.isReady == false && p.sumHand(p.hand) < 22) {
             showPlayerCards(p);
-            while (!choiceJudge) {
+            while (true) {
                 System.out.print(LS + "ヒットしますか？(1:yes, 2:no)：");
                 String choice = scanner.next();
                 if (!choice.equals("1") && !choice.equals("2")) {
@@ -105,13 +104,13 @@ public class Game {
                 } else if (choice.equals("1")) {
                     //yesならカードを1枚引き、それ以外ならステイ状態にする
                     p.setHand(deck.drawCard());
-                    choiceJudge = true;
+                    break;
                 } else {
                     p.isReady = true;
-                    choiceJudge = true;
+                    break;
                 }
             }
-            choiceJudge = false;
+
         } else {
             p.isReady = true;
         }
