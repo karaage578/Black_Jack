@@ -1,4 +1,4 @@
-package models;
+package Game;
 
 public class Card {
     private int num;

@@ -1,4 +1,4 @@
-package models;
+package Game;
 
 import java.util.Scanner;
 
@@ -101,7 +101,7 @@ public class Game {
                 System.out.print(LS + "ヒットしますか？(1:yes, 2:no)：");
                 String choice = scanner.next();
                 if (!choice.equals("1") && !choice.equals("2")) {
-                    System.out.println("1 か 2 を入力してください" + LS);
+                    System.out.println(LS + "1 か 2 を入力してください" + LS);
                 } else if (choice.equals("1")) {
                     //yesならカードを1枚引き、それ以外ならステイ状態にする
                     p.setHand(deck.drawCard());
