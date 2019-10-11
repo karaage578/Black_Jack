@@ -28,10 +28,10 @@ public class Deck {
     //デッキ作成
     public void createDeck() {
         for (int i = 1; i <= 13; i++) {
-            cardArray.add(new Card(i, i, "♠"));
-            cardArray.add(new Card(i, i, "♥"));
-            cardArray.add(new Card(i, i, "☘"));
-            cardArray.add(new Card(i, i, "♦"));
+            cardArray.add(new Card(i, "♠"));
+            cardArray.add(new Card(i, "♥"));
+            cardArray.add(new Card(i, "☘"));
+            cardArray.add(new Card(i, "♦"));
         }
     }
 }

@@ -12,7 +12,7 @@ public class BlackJack {
         Human d = new Human();
 
         //プレイヤーがゲーム終了を選択するか、所持金が0になると終了
-        while (continueGame || p.moneyInHand.getAmount() == 0) {
+        while (continueGame || p.moneyInHand == 0) {
 
             continueGame = Game.startGame(deck, p, d, continueGame);
         }
