@@ -9,6 +9,7 @@ public class Game {
 
     //ゲーム処理
     static Boolean startGame(Deck deck, Human p, Human d, Boolean continueGame) {
+        Boolean choiceJudge = false;
 
         //山札をシャッフル
         deck.shuffleDeck();
@@ -22,7 +23,7 @@ public class Game {
         //プレイヤー、ディーラーともにステイであれば勝負
         while (!p.isReady || !d.isReady) {
             //３．４．プレイヤー、ディーラー（ヒットorステイ）
-            PlayerTurn(deck, p, d);
+            PlayerTurn(deck, p, d, choiceJudge);
         }
 
         //★呼び出しが多いメソッドを変数化しておく
@@ -32,13 +33,28 @@ public class Game {
         //勝負
         judge(p, d, betAmount, pSumHand, dSumHand);
 
-        System.out.print("NextGame？(yes or no)：");
-        String choice = scanner.next();
-        if (choice.equals("no")) {
-            continueGame = false;
-        }
+        //ゲームを続けるか選択
 
-        //手札を戻しデッキを再度シャッフルする→リセット処理としてメソッド化する？
+        while (!choiceJudge) {
+            System.out.print(LS + "NextGame？(1:yes, 2:no)：");
+            String choice = scanner.next();
+            if (!choice.equals("1") && !choice.equals("2")) {
+                System.out.println(LS + "1 か 2 を入力してください");
+            } else if (choice.equals("2")) {
+                continueGame = false;
+                choiceJudge = true;
+            } else {
+                //手札を戻しデッキを再度シャッフルする
+                reset(deck, p, d);
+                choiceJudge = true;
+            }
+
+        }
+        return continueGame;
+    }
+
+    //リセット
+    private static void reset(Deck deck, Human p, Human d) {
         p.hand.clear();
         d.hand.clear();
         p.isReady = false;
@@ -48,8 +64,6 @@ public class Game {
         deck.cardArray.clear();
         deck.createDeck();
         deck.shuffleDeck();
-
-        return continueGame;
     }
 
     //判定(★成功率の高い処理から順に記述する)
@@ -80,17 +94,26 @@ public class Game {
     }
 
     //プレイヤーの選択（ヒットorステイ）
-    private static void PlayerTurn(Deck deck, Human p, Human d) {
-        if (p.isReady == false) {
+    private static void PlayerTurn(Deck deck, Human p, Human d, Boolean choiceJudge) {
+        if (p.isReady == false && p.sumHand(p.hand) < 22) {
             showPlayerCards(p);
-            System.out.print("ヒットしますか？(yes or no)：");
-            String choice = scanner.next();
-            //yesならカードを1枚引き、それ以外ならステイ状態にする
-            if (choice.equals("yes")) {
-                p.setHand(deck.drawCard());
-            } else {
-                p.isReady = true;
+            while (!choiceJudge) {
+                System.out.print(LS + "ヒットしますか？(1:yes, 2:no)：");
+                String choice = scanner.next();
+                if (!choice.equals("1") && !choice.equals("2")) {
+                    System.out.println("1 か 2 を入力してください" + LS);
+                } else if (choice.equals("1")) {
+                    //yesならカードを1枚引き、それ以外ならステイ状態にする
+                    p.setHand(deck.drawCard());
+                    choiceJudge = true;
+                } else {
+                    p.isReady = true;
+                    choiceJudge = true;
+                }
             }
+            choiceJudge = false;
+        } else {
+            p.isReady = true;
         }
 
         //ディーラーターン

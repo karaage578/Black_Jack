@@ -43,13 +43,19 @@ public class Human {
             System.out.print(LS + "所持金：" + moneyInHand + LS);
             System.out.print("チップベット額を入力してください(例：　300)：");
             String chipBet = scanner.next();
-            bet = Integer.parseInt(chipBet);
+            //★数値以外が入力された場合は注意文言を表示
+            try {
+                bet = Integer.parseInt(chipBet);
 
-            if (bet > moneyInHand) {
-                System.out.print("ベット額が所持金額を超えています：" + LS);
-            } else {
-                isBet = true;
+                if (bet > moneyInHand) {
+                    System.out.print("ベット額が所持金額を超えています：" + LS);
+                } else {
+                    isBet = true;
+                }
+            } catch (NumberFormatException e) {
+                System.out.print("数値を入力してください" + LS);
             }
+
         }
         moneyInHand = moneyInHand - bet;
 
