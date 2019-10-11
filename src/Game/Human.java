@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Human {
     List<Card> hand = new ArrayList<>();
     Boolean isReady = false;
-    Boolean isBet = false;
     int moneyInHand = 3000;
     //改行
     public static final String LS = System.getProperty("line.separator");
@@ -39,7 +38,7 @@ public class Human {
     //チップをベットする
     public int chipBet() {
         int bet = 0;
-        while (!isBet) {
+        while (true) {
             System.out.print(LS + "所持金：" + moneyInHand + LS);
             System.out.print("チップベット額を入力してください(例：　300)：");
             String chipBet = scanner.next();
@@ -50,7 +49,7 @@ public class Human {
                 if (bet > moneyInHand) {
                     System.out.print("ベット額が所持金額を超えています：" + LS);
                 } else {
-                    isBet = true;
+                    break;
                 }
             } catch (NumberFormatException e) {
                 System.out.print("数値を入力してください" + LS);

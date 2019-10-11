@@ -57,7 +57,6 @@ public class Game {
         p.hand.clear();
         d.hand.clear();
         p.isReady = false;
-        p.isBet = false;
         d.isReady = false;
         deck.cardCount = 0;
         deck.cardArray.clear();
