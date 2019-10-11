@@ -24,7 +24,6 @@ public class Game {
         //勝負
         if ((d.sumHand(d.hand) > 21 && p.sumHand(p.hand) > 21) || (d.sumHand(d.hand) == p.sumHand(p.hand))) {
             showEachCards(p, d);
-            betAmount = betAmount / 2;
             System.out.println("引き分けです" + LINE_SEPARATOR);
             p.betReturn(betAmount);
         } else if ((d.sumHand(d.hand) > 21 && p.sumHand(p.hand) <= 21)
