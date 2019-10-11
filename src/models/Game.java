@@ -44,7 +44,7 @@ public class Game {
             continueGame = false;
         }
 
-        //手札を戻しデッキを再度シャッフルする
+        //手札を戻しデッキを再度シャッフルする→リセット処理としてメソッド化する？
         p.hand.clear();
         d.hand.clear();
         p.isReady = false;
